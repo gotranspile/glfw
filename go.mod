@@ -1,4 +1,4 @@
-module glfw
+module "github.com/gotranspile/glfw"
 
 go 1.17
 
