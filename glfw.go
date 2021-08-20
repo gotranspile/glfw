@@ -31,7 +31,7 @@ func SetErrorCallback(cb ErrorCallback) (prev ErrorCallback) {
 }
 
 func (w *Window) GetFramebufferSize(x, y *int) {
-	*x, *y = glfw.Window.GetFramebufferSize(w)
+	*x, *y = glfw.Window.GetFramebufferSize((*glfw.Window)(w))
 }
 
 func (m *Monitor) GetPos(x, y *int) {
@@ -43,19 +43,19 @@ func (m *Monitor) GetPhysicalSize(x, y *int) {
 }
 
 func (j Joystick) GetAxes(c *int) []float32 {
-	a := glfw.Joystick.GetAxes(j)
+	a := glfw.Joystick.GetAxes(glfw.Joystick(j))
 	*c = len(a)
 	return a
 }
 
 func (j Joystick) GetButtons(c *int) []Action {
-	a := glfw.Joystick.GetButtons(j)
+	a := glfw.Joystick.GetButtons(glfw.Joystick(j))
 	*c = len(a)
-	return []Action(unsafe.Slice((*Action)(&a[0]), len(a))) // avoids creating another slice
+	return (*[0xFFFFFFFF]Action)(unsafe.Pointer(&a[0]))[:len(a):len(a)]// avoids creating another slice
 }
 
 func (j Joystick) GetHats(c *int) []JoystickHatState {
 	a := glfw.Joystick.GetHats(j)
 	*c = len(a)
-	return []JoystickHatState(unsafe.Slice((*JoystickHatState)(&a[0]), len(a))) // avoids creating another slice
+	return (*[0xFFFFFFFF]JoystickHatState)(unsafe.Pointer(&a[0]))[:len(a):len(a)] // avoids creating another slice
 }
