@@ -34,6 +34,10 @@ func (w *Window) GetFramebufferSize(x, y *int) {
 	*x, *y = (*glfw.Window)(w).GetFramebufferSize()
 }
 
+func (w *Window) GetPos(x, y *int) {
+	*x, *y = (*glfw.Window)(w).GetPos()
+}
+
 func (m *Monitor) GetPos(x, y *int) {
 	*x, *y = (*glfw.Monitor)(m).GetPos()
 }
