@@ -108,7 +108,7 @@ const (
 	KeyNumLock = Key(glfw.KeyNumLock)
 	KeyPrintScreen = Key(glfw.KeyPrintScreen)
 	KeyPause = Key(glfw.KeyPause)
-	KeyF1 = Key(glfw.KeyF)1
+	KeyF1 = Key(glfw.KeyF1)
 	KeyF2 = Key(glfw.KeyF2)
 	KeyF3 = Key(glfw.KeyF3)
 	KeyF4 = Key(glfw.KeyF4)
