@@ -33,7 +33,6 @@ var (
 	CreateCursor = glfw.CreateCursor
 	CreateStandardCursor = glfw.CreateStandardCursor
 	SetJoystickCallback = glfw.SetJoystickCallback
-	GetMonitors = glfw.GetMonitors
 	GetPrimaryMonitor = glfw.GetPrimaryMonitor
 	SetMonitorCallback = glfw.SetMonitorCallback
 	GetCurrentContext = glfw.GetCurrentContext

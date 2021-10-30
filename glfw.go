@@ -50,6 +50,12 @@ func (m *Monitor) GetPhysicalSize(x, y *int) {
 	*x, *y = (*glfw.Monitor)(m).GetPhysicalSize()
 }
 
+func GetMonitors(count *int) **glfw.Monitor {
+	m := glfw.GetMonitors()
+	*count = len(m)
+	return &m[0]
+}
+
 func (j Joystick) GetAxes(c *int) []float32 {
 	a := glfw.Joystick(j).GetAxes()
 	*c = len(a)
