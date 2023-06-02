@@ -1,8 +1,9 @@
 package glfw
 
 import (
-	"github.com/go-gl/glfw/v3.3/glfw"
 	"unsafe"
+
+	"github.com/go-gl/glfw/v3.3/glfw"
 )
 
 // changes are accumulated in this file
@@ -20,7 +21,7 @@ func CreateWindow(width int, height int, title string, monitor *Monitor, share *
 	return (*Window)(w)
 }
 
-type ErrorCallback func(int string)
+type ErrorCallback func(int, string)
 
 var currentErrCb ErrorCallback
 
@@ -40,6 +41,26 @@ func (w *Window) GetPos(x, y *int) {
 
 func (w *Window) GetSize(x, y *int) {
 	*x, *y = (*glfw.Window)(w).GetSize()
+}
+
+func (w *Window) MakeContextCurrent() {
+	(*glfw.Window)(w).MakeContextCurrent()
+}
+
+func (w *Window) SetShouldClose(value bool) {
+	(*glfw.Window)(w).SetShouldClose(value)
+}
+
+func (w *Window) ShouldClose() bool {
+	return (*glfw.Window)(w).ShouldClose()
+}
+
+func (w *Window) SwapBuffers() {
+	(*glfw.Window)(w).SwapBuffers()
+}
+
+func (w *Window) Destroy() {
+	(*glfw.Window)(w).Destroy()
 }
 
 func (m *Monitor) GetPos(x, y *int) {
@@ -65,7 +86,7 @@ func (j Joystick) GetAxes(c *int) []float32 {
 func (j Joystick) GetButtons(c *int) []Action {
 	a := glfw.Joystick(j).GetButtons()
 	*c = len(a)
-	return (*[0xFFFFFFFF]Action)(unsafe.Pointer(&a[0]))[:len(a):len(a)]// avoids creating another slice
+	return (*[0xFFFFFFFF]Action)(unsafe.Pointer(&a[0]))[:len(a):len(a)] // avoids creating another slice
 }
 
 func (j Joystick) GetHats(c *int) []JoystickHatState {
